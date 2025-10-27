@@ -1,0 +1,279 @@
+/* === ESTILOS GENERALES === */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #333;
+}
+
+/* === NAVEGACIÓN SUPERIOR === */
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 30px;
+}
+
+.navegacion {
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content:flex-end;
+align-items: center;
+gap: 10px;
+border: 2;
+
+
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:flex-end;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #007bff;
+}
+.botones{
+    display: flex;
+    
+}
+
+nav .acciones button {
+  margin-left: 10px;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+nav .acciones button:first-child {
+  background-color: #f0f0f0;
+}
+
+nav .acciones button:last-child {
+  background-color: #000;
+  color: white;
+}
+
+/* === FORMULARIOS (Clientes y Pedidos) === */
+#formularios {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.formulario {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.formulario h2 {
+  margin-bottom: 15px;
+}
+
+.formulario input,
+.formulario select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.formulario button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.formulario button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  margin-right: 8px;
+}
+
+.formulario button[type="reset"] {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* === FORMULARIO SUPERIOR (segunda imagen) === */
+#pedidos table {
+  border-collapse: collapse;
+  width: auto;
+  margin: 20px auto;
+}
+
+#pedidos th {
+  text-align: left;
+  padding: 8px;
+}
+
+#pedidos td {
+  padding: 8px;
+}
+
+#pedidos input,
+#pedidos select {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#pedidos button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#pedidos button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+}
+
+#pedidos button[type="reset"] {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* === TARJETAS (Reviews o Sección de Contenido) === */
+#reseñas, .contenido {
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+#reseñas h2, .contenido h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.tarjetas {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Tarjetas verticales (reseñas) */
+#reseñas .tarjeta {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  width: 250px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Tarjetas horizontales (segunda imagen) */
+.contenido .tarjeta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 700px;
+}
+
+.contenido .tarjeta img {
+  border-radius: 10px;
+}
+
+.contenido .tarjeta .texto {
+  flex: 1;
+}
+
+.contenido .tarjeta button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* === FOOTER === */
+footer {
+  background-color: #fafafa;
+  border-top: 1px solid #ddd;
+  padding: 40px 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+footer .redes {
+  flex: 1;
+}
+
+footer .redes ul {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+footer .redes a {
+  text-decoration: none;
+  color: #333;
+}
+
+footer .enlaces {
+  display: flex;
+  flex: 3;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+footer h4 {
+  margin-bottom: 10px;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer ul li {
+  margin-bottom: 6px;
+}
+
+footer ul a {
+  text-decoration: none;
+  color: #555;
+}
+
+footer ul a:hover {
+  color: #007bff;
+}

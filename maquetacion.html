@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Clientes y Pedidos</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <!-- Barra de navegación -->
+  <header>
+    <nav class="navegacion">
+         
+      <ul>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Solutions</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+
+      <div class="botones">
+        <ul>
+         <li> <button>Sign in</button></li>
+        <li><button>Register</button></li>
+        </ul>
+      </div>
+    </nav>
+
+  </header>
+
+  
+  <main>
+
+    
+    <section id="formularios">
+
+      <!-- Formulario de Clientes -->
+      <div class="formulario" id="clientes">
+        <h2>Clientes</h2>
+        <form>
+          <label for="nombre">Nombre</label><br>
+          <input type="text" id="nombre" name="nombre" value="Luis González"><br><br>
+
+          <label for="ci">CI</label><br>
+          <input type="text" id="ci" name="ci" value="2"><br><br>
+
+          <button type="submit">Agregar</button>
+          <button type="reset">Borrar</button>
+        </form>
+      </div>
+
+      <!-- Formulario de Pedidos -->
+      <div class="formulario" id="pedidos">
+        <h2>Pedidos</h2>
+        <form>
+          <label for="producto">Producto</label><br>
+          <input type="text" id="producto" name="producto" value="Laptop">
+          <button type="submit">Agregar</button><br><br>
+
+          <label for="cantidad">Cantidad</label><br>
+          <input type="number" id="cantidad" name="cantidad" value="2"><br><br>
+
+          <label for="cliente">Cliente</label><br>
+          <select id="cliente" name="cliente">
+            <option value="luis">Luis González</option>
+          </select>
+        </form>
+      </div>
+    </section>
+
+    <!-- Sección de reseñas -->
+    <section id="reseñas">
+      <h2>Latest reviews</h2>
+
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <p>★★★★★</p>
+          <h3>Review title</h3>
+          <p>Review body</p>
+          <p><strong>Reviewer name</strong><br>Date</p>
+        </article>
+
+        <article class="tarjeta">
+          <p>★★★★★</p>
+          <h3>Review title</h3>
+          <p>Review body</p>
+          <p><strong>Reviewer name</strong><br>Date</p>
+        </article>
+
+        <article class="tarjeta">
+          <p>★★★★★</p>
+          <h3>Review title</h3>
+          <p>Review body</p>
+          <p><strong>Reviewer name</strong><br>Date</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+
+
+
+
+<!-- Sección superior: formulario -->
+  <section id="pedidos">
+    <form>
+      <table>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Cliente</th>
+        </tr>
+        <tr>
+          <td><input type="text" name="producto" value="Laptop"></td>
+          <td><input type="number" name="cantidad" value="2"></td>
+          <td>
+            <select name="cliente">
+              <option>Luis González</option>
+              <option>María Pérez</option>
+            </select>
+          </td>
+          <td><button type="submit">Actualizar</button></td>
+          <td><button type="reset">Borrar</button></td>
+        </tr>
+      </table>
+    </form>
+  </section>
+
+  <!-- Contenido principal -->
+  <main>
+    <section class="contenido">
+      <h2>Heading</h2>
+      <p>Subheading</p>
+
+      <!-- Tarjetas -->
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <img src="https://via.placeholder.com/100" alt="imagen ejemplo">
+          <div class="texto">
+            <h3>Title</h3>
+            <p>
+              Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.
+            </p>
+            <button>Button</button>
+          </div>
+        </article>
+
+        <article class="tarjeta">
+          <img src="https://via.placeholder.com/100" alt="imagen ejemplo">
+          <div class="texto">
+            <h3>Title</h3>
+            <p>
+              Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.
+            </p>
+            <button>Button</button>
+          </div>
+        </article>
+
+        <article class="tarjeta">
+          <img src="https://via.placeholder.com/100" alt="imagen ejemplo">
+          <div class="texto">
+            <h3>Title</h3>
+            <p>
+              Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.
+            </p>
+            <button>Button</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <div class="redes">
+      <p>Logotipo</p>
+      <ul>
+        <li><a href="#">X</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+
+    <div class="enlaces">
+      <div>
+        <h4>Use cases</h4>
+        <ul>
+          <li><a href="#">UI design</a></li>
+          <li><a href="#">UX design</a></li>
+          <li><a href="#">Wireframing</a></li>
+          <li><a href="#">Diagramming</a></li>
+          <li><a href="#">Brainstorming</a></li>
+          <li><a href="#">Online whiteboard</a></li>
+          <li><a href="#">Team collaboration</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">Design</a></li>
+          <li><a href="#">Prototyping</a></li>
+          <li><a href="#">Development features</a></li>
+          <li><a href="#">Design systems</a></li>
+          <li><a href="#">Collaboration features</a></li>
+          <li><a href="#">Design process</a></li>
+          <li><a href="#">FigJam</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Best practices</a></li>
+          <li><a href="#">Colors</a></li>
+          <li><a href="#">Color wheel</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Developers</a></li>
+          <li><a href="#">Resource library</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
