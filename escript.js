@@ -30,6 +30,8 @@ request.onsuccess = function (event) {
 
   // Llenar select de clientes al iniciar
   cargarClientesEnSelect();
+  mostrarClientes();
+  mostrarPedidos()
 };
 
 request.onerror = function (event) {
@@ -132,4 +134,96 @@ function cargarClientesEnSelect() {
       select.appendChild(option);
     });
   });
+}
+
+// ==========================
+// VISUALIZAR CLIENTES
+// ==========================
+function mostrarClientes() {
+  const contenedor = document.getElementById("listaClientes");
+  contenedor.innerHTML = "<h3>Lista de Clientes</h3>";
+
+  const tx = db.transaction("clientes", "readonly");
+  const store = tx.objectStore("clientes");
+  const request = store.openCursor();
+
+  request.onsuccess = (e) => {
+    const cursor = e.target.result;
+    if (cursor) {
+      const cliente = cursor.value;
+      const div = document.createElement("div");
+      div.classList.add("registro");
+      div.innerHTML = `
+        <strong>${cliente.nombre}</strong> (CI: ${cliente.ci}) 
+        <button onclick="eliminarCliente(${cliente.id})">🗑️</button>
+      `;
+      contenedor.appendChild(div);
+      cursor.continue();
+    }
+
+    if (!contenedor.querySelector(".registro")) {
+      contenedor.innerHTML += "<p><em>No hay clientes registrados.</em></p>";
+    }
+  };
+}
+
+
+// ==========================
+// VISUALIZAR PEDIDOS
+// ==========================
+function mostrarPedidos() {
+  const contenedor = document.getElementById("listaPedidos");
+  contenedor.innerHTML = "<h3>Lista de Pedidos</h3>";
+
+  const tx = db.transaction("pedidos", "readonly");
+  const store = tx.objectStore("pedidos");
+  const request = store.openCursor();
+
+  request.onsuccess = (e) => {
+    const cursor = e.target.result;
+    if (cursor) {
+      const pedido = cursor.value;
+      const div = document.createElement("div");
+      div.classList.add("registro");
+      div.innerHTML = `
+        <strong>${pedido.producto}</strong> - Cantidad: ${pedido.cantidad} <br>
+        Cliente ID: ${pedido.clienteId}
+        <button onclick="eliminarPedido(${pedido.id})">🗑️</button>
+      `;
+      contenedor.appendChild(div);
+      cursor.continue();
+    }
+
+    if (!contenedor.querySelector(".registro")) {
+      contenedor.innerHTML += "<p><em>No hay pedidos registrados.</em></p>";
+    }
+  };
+}
+
+
+// ==========================
+// ELIMINAR CLIENTE
+// ==========================
+function eliminarCliente(id) {
+  const tx = db.transaction("clientes", "readwrite");
+  const store = tx.objectStore("clientes");
+  store.delete(id);
+  tx.oncomplete = () => {
+    console.log("Cliente eliminado:", id);
+    mostrarClientes();
+    cargarClientesEnSelect();
+  };
+}
+
+// ==========================
+// ELIMINAR PEDIDO
+// ==========================
+function eliminarPedido(id) {
+  const tx = db.transaction("pedidos", "readwrite");
+  const store = tx.objectStore("pedidos");
+  store.delete(id);
+  tx.oncomplete = () => {
+    console.log("Pedido eliminado:", id);
+    mostrarPedidos();
+  };
 }

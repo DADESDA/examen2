@@ -161,6 +161,12 @@ nav .acciones button:last-child {
   color: white;
 }
 
+.lista {
+  margin-top: 15px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
 /* === TARJETAS (Reviews o Sección de Contenido) === */
 #reseñas, .contenido {
   width: 90%;
