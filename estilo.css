@@ -167,7 +167,7 @@ nav .acciones button:last-child {
   padding-top: 10px;
 }
 
-/* === TARJETAS (Reviews o Sección de Contenido) === */
+
 #reseñas, .contenido {
   width: 90%;
   max-width: 1000px;
@@ -186,7 +186,7 @@ nav .acciones button:last-child {
   flex-wrap: wrap;
 }
 
-/* Tarjetas verticales (reseñas) */
+
 #reseñas .tarjeta {
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -196,7 +196,7 @@ nav .acciones button:last-child {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Tarjetas horizontales (segunda imagen) */
+
 .contenido .tarjeta {
   display: flex;
   align-items: center;
@@ -227,7 +227,7 @@ nav .acciones button:last-child {
   cursor: pointer;
 }
 
-/* === FOOTER === */
+
 footer {
   background-color: #fafafa;
   border-top: 1px solid #ddd;

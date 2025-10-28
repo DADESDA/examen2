@@ -1,20 +1,22 @@
-// ==========================
-// CONFIGURAR INDEXEDDB
-// ==========================
+
 let db;
 const request = indexedDB.open("miTiendaDB", 1);
 
 request.onupgradeneeded = function (event) {
   db = event.target.result;
 
-  // Tabla de CLIENTES
+
+
   if (!db.objectStoreNames.contains("clientes")) {
     const clientesStore = db.createObjectStore("clientes", { keyPath: "id", autoIncrement: true });
     clientesStore.createIndex("nombre", "nombre", { unique: false });
     clientesStore.createIndex("ci", "ci", { unique: true });
   }
 
-  // Tabla de PEDIDOS
+  
+
+
+
   if (!db.objectStoreNames.contains("pedidos")) {
     const pedidosStore = db.createObjectStore("pedidos", { keyPath: "id", autoIncrement: true });
     pedidosStore.createIndex("clienteId", "clienteId", { unique: false });
@@ -28,7 +30,7 @@ request.onsuccess = function (event) {
   db = event.target.result;
   console.log("💾 Conexión exitosa a IndexedDB");
 
-  // Llenar select de clientes al iniciar
+  
   cargarClientesEnSelect();
   mostrarClientes();
   mostrarPedidos()
@@ -38,23 +40,22 @@ request.onerror = function (event) {
   console.error("❌ Error al abrir la base de datos:", event.target.error);
 };
 
-// ==========================
-// FUNCIONES CRUD - CLIENTES
-// ==========================
 
-// Agregar cliente
+
+
+
 function agregarCliente(nombre, ci) {
   const tx = db.transaction("clientes", "readwrite");
   const store = tx.objectStore("clientes");
   store.add({ nombre, ci });
   tx.oncomplete = () => {
     console.log("Cliente agregado:", nombre);
-    cargarClientesEnSelect(); // actualizar el select
+    cargarClientesEnSelect(); 
   };
   tx.onerror = (e) => console.error("Error al agregar cliente:", e.target.error);
 }
 
-// Listar clientes
+
 function listarClientes(callback) {
   const tx = db.transaction("clientes", "readonly");
   const store = tx.objectStore("clientes");
@@ -65,11 +66,10 @@ function listarClientes(callback) {
   };
 }
 
-// ==========================
-// FUNCIONES CRUD - PEDIDOS
-// ==========================
 
-// Agregar pedido
+
+
+
 function agregarPedido(clienteId, producto, cantidad) {
   const tx = db.transaction("pedidos", "readwrite");
   const store = tx.objectStore("pedidos");
@@ -77,11 +77,7 @@ function agregarPedido(clienteId, producto, cantidad) {
   tx.oncomplete = () => console.log("Pedido agregado para cliente ID:", clienteId);
 }
 
-// ==========================
-// CONEXIÓN CON FORMULARIOS HTML
-// ==========================
 
-// Formulario CLIENTES
 const formClientes = document.querySelector("#clientes form");
 formClientes.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -96,7 +92,7 @@ formClientes.addEventListener("submit", (e) => {
   }
 });
 
-// Formulario PEDIDOS
+
 const formPedidos = document.querySelector("#pedidos form");
 formPedidos.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -112,9 +108,8 @@ formPedidos.addEventListener("submit", (e) => {
   }
 });
 
-// ==========================
-// CARGAR CLIENTES EN SELECT
-// ==========================
+
+
 function cargarClientesEnSelect() {
   listarClientes((clientes) => {
     const select = document.getElementById("cliente");
@@ -136,9 +131,8 @@ function cargarClientesEnSelect() {
   });
 }
 
-// ==========================
-// VISUALIZAR CLIENTES
-// ==========================
+
+
 function mostrarClientes() {
   const contenedor = document.getElementById("listaClientes");
   contenedor.innerHTML = "<h3>Lista de Clientes</h3>";
@@ -168,9 +162,52 @@ function mostrarClientes() {
 }
 
 
-// ==========================
-// VISUALIZAR PEDIDOS
-// ==========================
+
+
+function mostrarPedidos() {
+  const tbody = document.querySelector("#tablaPedidos tbody");
+  tbody.innerHTML = "";
+
+  const tx = db.transaction("pedidos", "readonly");
+  const store = tx.objectStore("pedidos");
+  const request = store.openCursor();
+
+  request.onsuccess = (e) => {
+    const cursor = e.target.result;
+    if (cursor) {
+      const pedido = cursor.value;
+
+      // Obtenemos el nombre del cliente asociado
+      const clienteTx = db.transaction("clientes", "readonly");
+      const clienteStore = clienteTx.objectStore("clientes");
+      const clienteRequest = clienteStore.get(pedido.clienteId);
+
+      clienteRequest.onsuccess = () => {
+        const cliente = clienteRequest.result ? clienteRequest.result.nombre : "Desconocido";
+
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td><input type="text" value="${pedido.producto}" data-id="${pedido.id}" class="edit-producto"></td>
+          <td><input type="number" value="${pedido.cantidad}" class="edit-cantidad" min="1"></td>
+          <td>${cliente}</td>
+          <td>
+            <button class="actualizar" onclick="actualizarPedido(${pedido.id}, this)">Actualizar</button>
+            <button class="eliminar" onclick="eliminarPedido(${pedido.id})">Borrar</button>
+          </td>
+        `;
+        tbody.appendChild(fila);
+      };
+
+      cursor.continue();
+    } else if (!tbody.hasChildNodes()) {
+      tbody.innerHTML = `<tr><td colspan="4"><em>No hay pedidos registrados</em></td></tr>`;
+    }
+  };
+}
+
+
+
+
 function mostrarPedidos() {
   const contenedor = document.getElementById("listaPedidos");
   contenedor.innerHTML = "<h3>Lista de Pedidos</h3>";
@@ -201,9 +238,7 @@ function mostrarPedidos() {
 }
 
 
-// ==========================
-// ELIMINAR CLIENTE
-// ==========================
+
 function eliminarCliente(id) {
   const tx = db.transaction("clientes", "readwrite");
   const store = tx.objectStore("clientes");
@@ -215,9 +250,7 @@ function eliminarCliente(id) {
   };
 }
 
-// ==========================
-// ELIMINAR PEDIDO
-// ==========================
+
 function eliminarPedido(id) {
   const tx = db.transaction("pedidos", "readwrite");
   const store = tx.objectStore("pedidos");
@@ -227,3 +260,7 @@ function eliminarPedido(id) {
     mostrarPedidos();
   };
 }
+
+
+
+
